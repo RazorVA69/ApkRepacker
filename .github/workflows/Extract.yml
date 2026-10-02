@@ -17,7 +17,7 @@ jobs:
       - name: Extract zip
         run: |
           zip_file=$(find . -maxdepth 1 -name "*.zip" | head -n 1)
-          if [ -z "$zip_file" ]; theni
+          if [ -z "$zip_file" ]; then
             echo "No zip file found in repo root"
             exit 1
           fi
