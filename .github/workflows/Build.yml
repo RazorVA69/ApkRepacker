@@ -1,0 +1,63 @@
+name: Build APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - Cregrant
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '8'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK
+        run: |
+          sdkmanager "platforms;android-29" "build-tools;30.0.1"
+          yes | sdkmanager --licenses >/dev/null || true
+
+      - name: Create signing key
+        run: |
+          keytool -genkeypair \
+            -v \
+            -keystore release.keystore \
+            -alias release \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -storepass android \
+            -keypass android \
+            -dname "CN=ApkRepacker"
+
+      - name: Create keystore.properties
+        run: |
+          cat > keystore.properties <<'EOF'
+          storeFile=release.keystore
+          storePassword=android
+          keyAlias=release
+          keyPassword=android
+          EOF
+
+      - name: Build APK
+        run: |
+          chmod +x gradlew
+          ./gradlew clean assembleRelease --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ApkRepacker
+          path: app/build/outputs/apk/release/*.apk
+          if-no-files-found: error
