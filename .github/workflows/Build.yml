@@ -22,8 +22,12 @@ jobs:
 
       - name: Install Android SDK
         run: |
-          yes | sdkmanager --licenses >/dev/null || true
-          sdkmanager "platforms;android-29" "build-tools;30.0.1" "platform-tools"
+          export SDK="$ANDROID_SDK_ROOT"
+          export SDKMANAGER="$SDK/cmdline-tools/latest/bin/sdkmanager"
+          echo "$SDK/cmdline-tools/latest/bin" >> "$GITHUB_PATH"
+          echo "$SDK/platform-tools" >> "$GITHUB_PATH"
+          yes | "$SDKMANAGER" --licenses >/dev/null || true
+          "$SDKMANAGER" "platforms;android-29" "build-tools;30.0.1" "platform-tools"
 
       - name: Set up JDK 8
         uses: actions/setup-java@v4
