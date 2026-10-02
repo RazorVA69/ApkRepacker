@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="all_rules_applied">All rules applied.</string>
     <string name="failed_create_dir">Failed to create directory: %s</string>
-
     <string name="general_error">"Error: %s"</string>
     <string name="patch_applied">Patch Applied</string>
     <string name="patch_capital">PATCH</string>
     <string name="patch_error_cannot_parse">"Cannot parse line %d: %s"</string>
-    <string name="patch_error_invalid_target" >Invalid or unsupported target at line %d: %s</string>
+    <string name="patch_error_invalid_target">Invalid or unsupported target at line %d: %s</string>
     <string name="patch_error_no_entry">"Cannot find '%s' inside the patch."</string>
     <string name="patch_error_no_match">"No match found in %s."</string>
     <string name="patch_error_no_match_content">Match content is not specified.</string>
@@ -33,5 +31,10 @@
     <string name="patch_error_no_entrance_func">Entrance function is not specified.</string>
     <string name="patch_error_no_main_class">Main class is not specified.</string>
     <string name="patch_error_no_script_name">Script name is not specified.</string>
-
+    <string name="patcher_subtitle">Add one or more patch files to apply to this decoded project.</string>
+    <string name="no_patches_added">No patches added</string>
+    <string name="patch_count_format">%d patch%s ready</string>
+    <string name="patch_logs">Patch logs</string>
+    <string name="patch_logs_subtitle">Live output from the patch engine</string>
+    <string name="preview_patch">Preview patch</string>
 </resources>

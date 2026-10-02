@@ -1,50 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingTop="8dp"
-    android:paddingRight="16dp"
-    android:paddingBottom="8dp"
-    android:background="@drawable/selectable_background">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="2dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="2dp"
+    android:layout_marginBottom="5dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/color_divider"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_toStartOf="@+id/btn_preview"
+        android:layout_height="64dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="8dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:scaleType="center"
             app:srcCompat="@drawable/ic_zip" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/patch_name"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:gravity="center_vertical"
-            tools:text="FuckAss.zip" />
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:ellipsize="middle"
+            android:maxLines="1"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="15sp"
+            tools:text="example-patch.zip" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_preview"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/preview_patch"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_preview" />
     </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btn_preview"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_alignBottom="@+id/linearLayout"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:background="?selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        app:srcCompat="@drawable/ic_preview" />
-
-</RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

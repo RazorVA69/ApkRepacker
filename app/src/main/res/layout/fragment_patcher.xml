@@ -1,135 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:windowBackground"
-    android:clickable="true"
+    android:background="?android:attr/windowBackground"
     android:orientation="vertical"
-    tools:context=".fragment.PatcherFragment"
-    android:focusable="true">
+    tools:context=".fragment.PatcherFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="?colorPrimary"
-        android:elevation="0dp"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:elevation="0dp">
+        android:background="?android:attr/windowBackground"
+        android:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             app:navigationIcon="@drawable/ic_close"
-            app:popupTheme="?attr/actionBarPopupTheme"
-            app:theme="?attr/actionBarTheme"
-            app:title="@string/title_patcher" />
+            app:title="@string/title_patcher"
+            app:titleTextColor="?android:textColorPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/color_divider"
+            app:strokeWidth="1dp">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:orientation="vertical">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/patch_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    tools:listitem="@layout/list_item_patch" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/MD2Button"
-                    android:id="@+id/btn_select_patch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_margin="@dimen/checkbox_margin"
-                    android:text="@string/add_patch"
-                    android:textAllCaps="false" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:orientation="vertical"
-                android:padding="@dimen/checkbox_margin">
-
-                <androidx.core.widget.NestedScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fillViewport="true">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/logger"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:typeface="monospace"
-                        tools:text="log" />
-                </androidx.core.widget.NestedScrollView>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
                 android:orientation="vertical"
-                android:padding="@dimen/checkbox_margin">
+                android:padding="20dp">
 
-                <ProgressBar
-                    android:visibility="visible"
-                    android:id="@+id/progress_bar_rules"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/checkbox_margin"
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+                    android:text="@string/patcher_subtitle"
+                    android:textColor="?android:textColorSecondary"
+                    android:textSize="14sp" />
 
-                <ProgressBar
-                    android:visibility="visible"
-                    android:id="@+id/progress_bar_patches"
+                <TextView
+                    android:id="@+id/patch_count"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/checkbox_margin"
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/checkbox_margin"
-                    android:textSize="@dimen/text_size"
-                    android:textStyle="bold"
-                    tools:text="Time: 1m" />
+                    android:layout_marginTop="6dp"
+                    android:text="@string/no_patches_added"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                    android:id="@+id/start_patch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:layout_margin="16.0dip"
-                    android:text="@string/action_apply_patch"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    app:backgroundTint="?colorAccent"
-                    app:icon="@drawable/ic_install"
-                    app:iconTint="@color/white" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </FrameLayout>
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/patch_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="12dp"
+            tools:listitem="@layout/list_item_patch" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_select_patch"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/add_patch"
+            android:textAllCaps="false"
+            app:cornerRadius="28dp"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="textStart" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/start_patch"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/action_apply_patch"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:backgroundTint="?colorAccent"
+            app:cornerRadius="28dp"
+            app:icon="@drawable/ic_install"
+            app:iconGravity="textStart"
+            app:iconTint="@color/white" />
+    </LinearLayout>
+</LinearLayout>
