@@ -20,13 +20,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install Android SDK
         run: |
-          sdkmanager "platforms;android-29" "build-tools;30.0.1"
-          yes | sdkmanager --licenses || true
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platforms;android-29" "build-tools;30.0.1" "platform-tools"
 
       - name: Set up JDK 8
         uses: actions/setup-java@v4
